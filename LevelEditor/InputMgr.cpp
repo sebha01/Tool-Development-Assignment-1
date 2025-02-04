@@ -103,7 +103,12 @@ void InputMgr::mouse_callback(GLFWwindow* window, double xpos, double ypos)
 
 				if (currentCam == Camera_Type::SIDE)
 					//in side view (looking along z axis) move x and y position
-					gui->scene.selected_model->pos += glm::vec3(movx, movy, 0.0);
+					if (gui->scene.selected_model)
+						gui->scene.selected_model->pos += glm::vec3(movx, movy, 0.0);
+					else
+						gui->scene.selected_NavPoint->pos += glm::vec3(movx, movy, 0.0);
+
+					//gui->scene.selected_model->pos += glm::vec3(movx, movy, 0.0);
 				if (currentCam == Camera_Type::PERSPECTIVE)
 					//we dont move objects in 3d perspective view yet as its too complex
 					//we just move camera instead
@@ -117,7 +122,12 @@ void InputMgr::mouse_callback(GLFWwindow* window, double xpos, double ypos)
 						gui->scene.selected_NavPoint->pos += glm::vec3(movx, 0.0, -movy);
 				if (currentCam == Camera_Type::FRONT)
 					//in front view (looking along x axis) move z and z position
-					gui->scene.selected_model->pos += glm::vec3(0.0, movy, -movx);
+					if (gui->scene.selected_model)
+						gui->scene.selected_model->pos += glm::vec3(0.0, movy, -movx);
+					else
+						gui->scene.selected_NavPoint->pos += glm::vec3(0.0, movy, -movx);
+
+					//gui->scene.selected_model->pos += glm::vec3(0.0, movy, -movx);
 			}
 			//Right mouse button down to rotate
 			else if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)

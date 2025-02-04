@@ -70,7 +70,7 @@ void GUIMgr::createFrame()
 void GUIMgr::drawMenu()
 {
 	//Create main dockspace
-	ImGuiID dockspace = ImGui::DockSpaceOverViewport();
+	ImGuiID dockspace = ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
 	ImGui::SetNextWindowDockID(dockspace);
 
 	//7.Add a main menu here
@@ -93,6 +93,14 @@ void GUIMgr::drawMenu()
 			if (ImGui::MenuItem("Add Node", "Ctrl+A"))
 			{
 				scene.addNavPoint();
+			}
+			if (ImGui::MenuItem("Save Nodes", "Ctrl + ? "))
+			{
+				scene.saveNavSet();
+			}
+			if (ImGui::MenuItem("Load Nodes", "Ctrl + ? "))
+			{
+				scene.loadNavSet();
 			}
 			ImGui::EndMenu();
 		}
@@ -179,6 +187,7 @@ void GUIMgr::drawAll(std::stringstream* buffer)
 	//Show the ImGUI Demo
 	bool show = true;
 	ImGui::ShowDemoWindow(&show);
+
 	//Add a main menu here
 	drawMenu();
 	//Add a properties window here

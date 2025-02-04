@@ -124,9 +124,6 @@ void Scene::addNavPoint()
 
 bool Scene::selectNodeByID(int CurrentNodeID)
 {
-	//CURRENTLY ON SLIDE 5 OF 8 IN WEEK 8
-	// 
-	// 
 	//For each navPoint in NavSets
 	for (NavPoint navPoint : navSet.navPoints)
 	{
@@ -143,4 +140,94 @@ bool Scene::selectNodeByID(int CurrentNodeID)
 	}
 
 	return false;
+}
+
+void Scene::saveNavSet()
+{
+	//Open an XML file : "..\\..\\Resources\\Levels\\NavSet01.xml" for writing
+	ofstream outfile;
+	cout << "Opening file" << endl;
+	outfile.open("..\\..\\Resources\\Levels\\NavSet01.xml");
+
+	if (outfile) {
+		//Scene start tag
+		cout << "Saving navSets" << endl;
+		//write the "<NavSet>“ start tag
+		outfile << "<NavSet>" << endl;
+
+		//for each navPoint
+		for (NavPoint& navPoint : navSet.navPoints)
+		{
+			//write the "<NavPoint>“start tag
+			outfile << "<NavPoint>" << endl;
+			//Call the navPoint[].toXML() method to write its data
+			outfile << navPoint.toXML() << endl;
+			//write the "</NavPoint>" end tag
+			outfile << "</NavPoint>" << endl;
+		}
+		//write the "</NavSet>" end tag
+		outfile << "</NavSet>" << endl;
+		//Close the xml file
+		outfile.close();
+	}
+	else  
+	{
+		//handle error
+		 
+		cerr << "Error parsing XML: " << endl;
+	}
+}
+
+void Scene::loadNavSet()
+{
+	//Empty NavPoint vector
+	vector<NavPoint> navPts;
+	//Set CurrentNavPoint to 255
+	currentNavPoint = 255;
+	//Set selected_navPoint to nullptr;
+	selected_NavPoint = nullptr;
+	//Open an XML file : "..\\..\\Resources\\Levels\\NavSet01.xml" for reading
+	ti::XMLDocument doc;
+	doc.LoadFile("..\\..\\Resources\\Levels\\Scene01.xml");
+	
+	if (doc.Error())
+	{
+		//handle error
+		std::cerr << "Error parsing XML: " << doc.ErrorStr() << std::endl;
+	}
+	else
+	{
+		
+		ti::XMLElement * navSetElement = doc.RootElement();
+		ti::XMLElement* firstNavPointElement = navSetElement->FirstChildElement("NavPoint");
+
+		//While navPointElement
+		while (firstNavPointElement)
+		{
+			//read the navPointElement "Name"
+			string NPname = firstNavPointElement->FirstChildElement("PathName")->GetText();
+			
+
+			//read the navPointElement “Data"
+			string NPdata = firstNavPointElement->FirstChildElement("Data")->GetText();
+
+			//create a new NavPoint and add it to the navSet.navPoints vector(pass the data to the NavPoint constructor)
+			NavPoint* np = new NavPoint(NPname);
+			np->setData(NPdata);
+
+			//Set the new NavPoint.ID to CurrentNavPoint
+			np->ID = currentNavPoint;
+			
+			navSet.navPoints.push_back(*np);
+
+			//Decrement CurrentNavPoint
+			currentNavPoint--;
+
+			//Get the next sibling element with "NavPoint" tag
+			firstNavPointElement = firstNavPointElement->FirstChildElement("NavPoint");
+			
+		}
+		//Close the xml file
+		//LEAVE THIS PART
+	}
 }

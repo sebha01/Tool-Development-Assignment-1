@@ -130,17 +130,20 @@ int main()
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glViewport(0, 0, camera_settings.screenWidth, camera_settings.screenHeight);//viewport fills window
+
+
 		glm::mat4 viewProjectionMatrix = camera[(int)inputMgr.currentCam].getProjectionMatrix() * camera[(int)inputMgr.currentCam].getViewMatrix();
-		
 		glm::mat4 I = glm::mat4(1);
 
 		glEnable(GL_STENCIL_TEST);
+
 		drawModelHierarchy(&GUI.scene.rootModel, &I, &viewProjectionMatrix);
 		GUI.scene.navSet.draw(viewProjectionMatrix);
+
 		glDisable(GL_STENCIL_TEST);
 
 	//	ground.drawQuad_VBO(I, viewProjectionMatrix);
-
+	// 		
 		//Draw all GUI components with one function call
 		GUI.drawAll(&buffer);
 

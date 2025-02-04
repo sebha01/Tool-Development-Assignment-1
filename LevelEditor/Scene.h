@@ -21,9 +21,9 @@ using namespace std;
 class Scene
 {
 public:
-	int CurrentObject=0;
+	int CurrentObject = 0;
 	Model* selected_model = nullptr;
-	Model rootModel= Model("SceneRoot");
+	Model rootModel = Model("SceneRoot");
 
 	NavSet navSet;
 	int currentNavPoint = 255;
@@ -36,5 +36,7 @@ public:
 	bool selectModelByID(Model* model, int CurrentObjectID);
 	void addNavPoint();
 	bool selectNodeByID(int CurrentNodeID);
+	void saveNavSet();
+	void loadNavSet();
 };
 
