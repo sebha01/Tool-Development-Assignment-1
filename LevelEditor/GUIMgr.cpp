@@ -70,8 +70,8 @@ void GUIMgr::createFrame()
 void GUIMgr::drawMenu()
 {
 	//Create main dockspace
-	ImGuiID dockspace = ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
-	ImGui::SetNextWindowDockID(dockspace);
+	/*ImGuiID dockspace = ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
+	ImGui::SetNextWindowDockID(dockspace);*/
 
 	//7.Add a main menu here
 	if (ImGui::BeginMainMenuBar())
