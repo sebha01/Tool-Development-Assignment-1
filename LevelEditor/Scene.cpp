@@ -180,54 +180,71 @@ void Scene::saveNavSet()
 
 void Scene::loadNavSet()
 {
-	//Empty NavPoint vector
-	vector<NavPoint> navPts;
-	//Set CurrentNavPoint to 255
+	// Set CurrentNavPoint to 255
 	currentNavPoint = 255;
-	//Set selected_navPoint to nullptr;
+	// Set selected_navPoint to nullptr
 	selected_NavPoint = nullptr;
-	//Open an XML file : "..\\..\\Resources\\Levels\\NavSet01.xml" for reading
+
+	// Open an XML file for reading
 	ti::XMLDocument doc;
-	doc.LoadFile("..\\..\\Resources\\Levels\\Scene01.xml");
-	
+	doc.LoadFile("..\\..\\Resources\\Levels\\NavSet01.xml");
+
+	// Check if the file was loaded correctly
 	if (doc.Error())
 	{
-		//handle error
+		// Handle error if XML file failed to load
 		std::cerr << "Error parsing XML: " << doc.ErrorStr() << std::endl;
 	}
 	else
 	{
-		
-		ti::XMLElement * navSetElement = doc.RootElement();
+		// Get the root element <NavSet>
+		ti::XMLElement* navSetElement = doc.RootElement();
+
+		// Get the first <NavPoint> element
 		ti::XMLElement* firstNavPointElement = navSetElement->FirstChildElement("NavPoint");
 
-		//While navPointElement
+		// Iterate through each <NavPoint> element
 		while (firstNavPointElement)
 		{
-			//read the navPointElement "Name"
-			string NPname = firstNavPointElement->FirstChildElement("PathName")->GetText();
-			
+			// Ensure the Name and Data elements exist before trying to access them
+			ti::XMLElement* nameElement = firstNavPointElement->FirstChildElement("Name");
+			ti::XMLElement* dataElement = firstNavPointElement->FirstChildElement("Data");
 
-			//read the navPointElement “Data"
-			string NPdata = firstNavPointElement->FirstChildElement("Data")->GetText();
+			// Check if both Name and Data elements exist
+			if (nameElement && dataElement)
+			{
+				// Extract the name of the NavPoint
+				string NPname = nameElement->GetText();
 
-			//create a new NavPoint and add it to the navSet.navPoints vector(pass the data to the NavPoint constructor)
-			NavPoint* np = new NavPoint(NPname);
-			np->setData(NPdata);
+				// Extract the Data string
+				string NPdata = dataElement->GetText();
 
-			//Set the new NavPoint.ID to CurrentNavPoint
-			np->ID = currentNavPoint;
-			
-			navSet.navPoints.push_back(*np);
+				// Create a new NavPoint and set its name
+				NavPoint* np = new NavPoint(NPname);
 
-			//Decrement CurrentNavPoint
-			currentNavPoint--;
+				// Set position, rotation, and scale using the extracted Data
+				np->setData(NPdata);
 
-			//Get the next sibling element with "NavPoint" tag
-			firstNavPointElement = firstNavPointElement->FirstChildElement("NavPoint");
-			
+				// Set the ID of the NavPoint
+				np->ID = currentNavPoint;
+
+				// Add the NavPoint to the navSet's vector of NavPoints
+				navSet.navPoints.push_back(*np);
+
+				// Decrement the CurrentNavPoint ID for the next NavPoint
+				currentNavPoint--;
+			}
+			else
+			{
+				// Handle the case where Name or Data element is missing
+				std::cerr << "Missing Name or Data element in NavPoint" << std::endl;
+			}
+
+			// Move to the next sibling <NavPoint> element
+			firstNavPointElement = firstNavPointElement->NextSiblingElement("NavPoint");
 		}
-		//Close the xml file
-		//LEAVE THIS PART
+
+		// Optionally, you can log the completion of loading
+		std::cout << "Loading completed" << std::endl;
 	}
 }
