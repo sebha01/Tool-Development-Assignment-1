@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\sebas\\OneDrive - University of South Wales\\Uni\\Tool Development\\Tool-Development-Assignment-1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1025A128-69BC-4743-81BA-B8C1D551E214}|LevelEditor\\LevelEditor.vcxproj|C:\\Users\\sebas\\OneDrive - University of South Wales\\Uni\\Tool Development\\Tool-Development-Assignment-1\\LevelEditor\\LevelEditor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1025A128-69BC-4743-81BA-B8C1D551E214}|LevelEditor\\LevelEditor.vcxproj|solutionrelative:LevelEditor\\LevelEditor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1025A128-69BC-4743-81BA-B8C1D551E214}|LevelEditor\\LevelEditor.vcxproj|C:\\Users\\sebas\\OneDrive - University of South Wales\\Uni\\Tool Development\\Tool-Development-Assignment-1\\LevelEditor\\GUIMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1025A128-69BC-4743-81BA-B8C1D551E214}|LevelEditor\\LevelEditor.vcxproj|solutionrelative:LevelEditor\\GUIMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1025A128-69BC-4743-81BA-B8C1D551E214}|LevelEditor\\LevelEditor.vcxproj|C:\\Users\\sebas\\OneDrive - University of South Wales\\Uni\\Tool Development\\Tool-Development-Assignment-1\\LevelEditor\\InputMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1025A128-69BC-4743-81BA-B8C1D551E214}|LevelEditor\\LevelEditor.vcxproj|solutionrelative:LevelEditor\\InputMgr.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1025A128-69BC-4743-81BA-B8C1D551E214}|LevelEditor\\LevelEditor.vcxproj|C:\\Users\\sebas\\OneDrive - University of South Wales\\Uni\\Tool Development\\Tool-Development-Assignment-1\\LevelEditor\\LevelEditor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1025A128-69BC-4743-81BA-B8C1D551E214}|LevelEditor\\LevelEditor.vcxproj|solutionrelative:LevelEditor\\LevelEditor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1025A128-69BC-4743-81BA-B8C1D551E214}|LevelEditor\\LevelEditor.vcxproj|C:\\Users\\sebas\\OneDrive - University of South Wales\\Uni\\Tool Development\\Tool-Development-Assignment-1\\LevelEditor\\Model.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -54,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -67,8 +67,7 @@
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-01-29T13:23:04.497Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -80,12 +79,11 @@
               "RelativeToolTip": "LevelEditor\\Scene.cpp",
               "ViewState": "AgIAAKQAAAAAAAAAAAAcwNcAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-29T13:23:05.721Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T13:23:05.721Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "InputMgr.cpp",
               "DocumentMoniker": "C:\\Users\\sebas\\OneDrive - University of South Wales\\Uni\\Tool Development\\Tool-Development-Assignment-1\\LevelEditor\\InputMgr.cpp",
               "RelativeDocumentMoniker": "LevelEditor\\InputMgr.cpp",
@@ -98,13 +96,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "GUIMgr.cpp",
               "DocumentMoniker": "C:\\Users\\sebas\\OneDrive - University of South Wales\\Uni\\Tool Development\\Tool-Development-Assignment-1\\LevelEditor\\GUIMgr.cpp",
               "RelativeDocumentMoniker": "LevelEditor\\GUIMgr.cpp",
               "ToolTip": "C:\\Users\\sebas\\OneDrive - University of South Wales\\Uni\\Tool Development\\Tool-Development-Assignment-1\\LevelEditor\\GUIMgr.cpp",
               "RelativeToolTip": "LevelEditor\\GUIMgr.cpp",
-              "ViewState": "AgIAAIsAAAAAAAAAAAAcwL0AAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAAEkAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-29T13:24:56.661Z",
               "EditorCaption": ""
@@ -131,8 +129,7 @@
               "RelativeToolTip": "LevelEditor\\Model.cpp",
               "ViewState": "AgIAABgAAAAAAAAAAAAAAHoAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-04T12:51:41.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T12:51:41.317Z"
             },
             {
               "$type": "Document",
@@ -144,12 +141,11 @@
               "RelativeToolTip": "LevelEditor\\NavPoint.h",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAB4AAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-29T13:12:17.687Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T13:12:17.687Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "LevelEditor.cpp",
               "DocumentMoniker": "C:\\Users\\sebas\\OneDrive - University of South Wales\\Uni\\Tool Development\\Tool-Development-Assignment-1\\LevelEditor\\LevelEditor.cpp",
               "RelativeDocumentMoniker": "LevelEditor\\LevelEditor.cpp",

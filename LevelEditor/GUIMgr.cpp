@@ -69,6 +69,10 @@ void GUIMgr::createFrame()
 }
 void GUIMgr::drawMenu()
 {
+	//Create main dockspace
+	//ImGuiViewport* viewport = ImGui::GetMainViewport();
+	//ImGui::DockSpaceOverViewport(viewport);
+
 	//7.Add a main menu here
 	if (ImGui::BeginMainMenuBar())
 	{
@@ -182,10 +186,6 @@ void GUIMgr::drawAll(std::stringstream* buffer)
 	createFrame();
 	//Show the ImGUI Demo
 	bool show = true;
-
-	//Create main dockspace
-	ImGuiViewport* viewport = ImGui::GetMainViewport();
-	ImGui::DockSpaceOverViewport(viewport);
 
 	//Add new scene display
 
