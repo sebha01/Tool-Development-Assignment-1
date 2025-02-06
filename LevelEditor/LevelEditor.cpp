@@ -65,7 +65,7 @@ void drawModelHierarchy(Model* modelHierarchy, glm::mat4* parentMatrix, glm::mat
 int main()
 {
 	//remove the console window ans send cout to buffer for imGUI
-//	FreeConsole();
+	//FreeConsole();
 	std::stringstream buffer;
 	//std::streambuf* oldcout = std::cout.rdbuf(buffer.rdbuf());
 	//std::streambuf* oldcerr = std::cerr.rdbuf(buffer.rdbuf());
@@ -107,9 +107,9 @@ int main()
 	glfwSwapInterval(1);		// glfw enable swap interval to match screen v-sync
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_DEPTH_TEST);
-	//glEnable(GL_CULL_FACE);	//Enables face culling
+	glEnable(GL_CULL_FACE);	//Enables face culling
 	//glFrontFace(GL_CCW);		//Specifies which winding order if front facing
-	glEnable(GL_BLEND);
+	//glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//only update stencil buffer if depth test passes
 	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
@@ -146,6 +146,7 @@ int main()
 	// 		
 		//Draw all GUI components with one function call
 		GUI.drawAll(&buffer);
+
 
 		// glfw: swap buffers and poll events
 		glfwSwapBuffers(window);
