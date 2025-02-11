@@ -4,10 +4,10 @@ void GUIMgr::DrawModel(Model* node) {
 	static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 
 	if (node->children.empty()) {
-
-		ImGui::Selectable(node->name.c_str(), scene.selected_model == node);
-		if (ImGui::IsItemClicked())
+		bool isSelected = scene.selected_model == node ? true : false;
+		if (ImGui::Selectable(node->name.c_str(), isSelected))
 			scene.selected_model = node;
+			scene.selected_NavPoint = nullptr;
 	}
 	else {
 		ImGui::SetNextItemOpen(node->open);
@@ -19,6 +19,7 @@ void GUIMgr::DrawModel(Model* node) {
 		if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen())
 		{
 			scene.selected_model = node;
+			scene.selected_NavPoint = nullptr;
 			scene.CurrentObject = node->ID;
 		}
 			
@@ -162,7 +163,7 @@ void GUIMgr::drawPropertiesWindow(Model* model)
 	//9.Add a properties window here
 	ImGui::Begin("Properties");
 	{
-		if (scene.selected_model)
+		if (scene.selected_model != nullptr && scene.selected_NavPoint == nullptr)
 		{
 			//11.Add text input here
 			ImGui::Text(scene.selected_model->name.c_str());
@@ -171,9 +172,11 @@ void GUIMgr::drawPropertiesWindow(Model* model)
 			ImGui::InputFloat3("Scale", &scene.selected_model->scale[0]);
 		}
 		else
+		{
 			ImGui::Text("No Model selected");
+		}
 
-		if (scene.selected_NavPoint)
+		if (scene.selected_NavPoint != nullptr)
 		{
 			ImGui::Text(scene.selected_NavPoint->name.c_str());
 			ImGui::InputFloat3("Position", &scene.selected_NavPoint->pos[0]);
@@ -181,7 +184,9 @@ void GUIMgr::drawPropertiesWindow(Model* model)
 			ImGui::InputFloat3("Scale", &scene.selected_NavPoint->scale[0]);
 		}
 		else
+		{
 			ImGui::Text("No Nav Point selected");
+		}
 	}
 	ImGui::End();
 
@@ -268,38 +273,32 @@ void GUIMgr::DrawNavSet()
 		ImGui::Text("NavPoints");
 		return;
 	}
-	else {
-		// Set TreeNode state based on stored open state
+	else
+	{
 		ImGui::SetNextItemOpen(scene.navSet.open);
-
-		// Create a TreeNode for NavPoints
 		bool open = ImGui::TreeNodeEx("NavPoints", base_flags);
+		ImGuiTreeNodeFlags node_flags = base_flags;
 
 		if (open)
 		{
-			// If expanded, update open state
 			scene.navSet.open = true;
-
-			// Iterate through navPoints and create selectable items
-			for (size_t i = 0; i < scene.navSet.navPoints.size(); ++i)
+			for (size_t i = 0; i < scene.navSet.navPoints.size(); i++) 
 			{
 				NavPoint& navPoint = scene.navSet.navPoints[i];
-
-				// Create a selectable for each navPoint
-				bool isSelected = (scene.selected_NavPoint == &navPoint);
-				if (ImGui::Selectable(navPoint.name.c_str(), isSelected))
+				bool isSelected = scene.selected_NavPoint == &navPoint ? true : false ;
+				if (ImGui::Selectable(navPoint.name.c_str(), isSelected)) 
 				{
-					// Update the selected navPoint
+					node_flags |= ImGuiTreeNodeFlags_Selected;
+					// Select navPoint, deselect model
 					scene.selected_NavPoint = &navPoint;
+					scene.selected_model = nullptr;
+					scene.currentNavPoint = scene.selected_NavPoint->ID;
 				}
 			}
-
-			// Close TreeNode
 			ImGui::TreePop();
 		}
 		else
 		{
-			// If collapsed, update open state
 			scene.navSet.open = false;
 		}
 	}

@@ -74,12 +74,14 @@ void InputMgr::mouse_button_callback(GLFWwindow* window, int button, int action,
 		GLubyte  stencil;
 		glReadPixels((GLint)xpos, (GLint)(height - ypos), 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_BYTE, &stencil);
 		cout << "Stencil = " << (int)stencil << endl;
-		if (stencil > 2 && stencil < 128)
+		if (stencil > 2 && stencil < 128) {
 			if (!gui->scene.selectModelByID(&gui->scene.rootModel, (int)stencil))
 				cout << "Model ID " << (int)stencil << " not found" << endl;
-			else if (stencil > 127)
-				if (!gui->scene.selectNodeByID((int)stencil))
-					cout << "Node ID " << (int)stencil << " not found" << endl;
+		}
+		else if (stencil > 127) {
+			if (!gui->scene.selectNodeByID((int)stencil))
+				cout << "Node ID " << (int)stencil << " not found" << endl;
+		}
 		glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
 	}
 }
