@@ -58,6 +58,19 @@ void InputMgr::mouse_button_callback(GLFWwindow* window, int button, int action,
 		double width = camera_settings->screenWidth;
 		double height = camera_settings->screenHeight;
 
+		if (xpos > GLWINDOW_POS->posx && xpos < (GLWINDOW_POS->posx + GLWINDOW_POS->width) && ypos > GLWINDOW_POS->posy && ypos < (GLWINDOW_POS->posy + GLWINDOW_POS -> height))
+		{
+			OGL_WIN_SELECT = true;
+			xpos -= GLWINDOW_POS->posx;
+			ypos -= GLWINDOW_POS->posy;
+		}
+		else
+		{
+			OGL_WIN_SELECT = false;
+			return;
+		}
+		glBindFramebuffer(GL_READ_FRAMEBUFFER, gui->getFBO()->getFBO());
+
 		GLubyte  stencil;
 		glReadPixels((GLint)xpos, (GLint)(height - ypos), 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_BYTE, &stencil);
 		cout << "Stencil = " << (int)stencil << endl;

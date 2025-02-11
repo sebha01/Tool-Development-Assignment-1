@@ -55,9 +55,10 @@ void GUIMgr::init(GLFWwindow* window)
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-
+	//ImGuiIO& io = ImGui::GetIO(); (void)io;
+	//io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	fbo = new FBO(1024, 1024);
 }
 void GUIMgr::createFrame()
 {
@@ -70,8 +71,8 @@ void GUIMgr::createFrame()
 void GUIMgr::drawMenu()
 {
 	//Create main dockspace
-	//ImGuiViewport* viewport = ImGui::GetMainViewport();
-	//ImGui::DockSpaceOverViewport(viewport);
+	ImGuiID dockspace = ImGui::DockSpaceOverViewport();
+	ImGui::SetNextWindowDockID(dockspace);
 
 	//7.Add a main menu here
 	if (ImGui::BeginMainMenuBar())
@@ -185,11 +186,10 @@ void GUIMgr::drawAll(std::stringstream* buffer)
 	//Create a new imGUI frame
 	createFrame();
 	//Show the ImGUI Demo
-	bool show = true;
+	//bool show = true;
 
 	//Add new scene display
-
-	ImGui::ShowDemoWindow(&show);
+	//ImGui::ShowDemoWindow(&show);
 
 	//Add a main menu here
 	drawMenu();
@@ -197,8 +197,6 @@ void GUIMgr::drawAll(std::stringstream* buffer)
 	drawPropertiesWindow(&scene.rootModel);
 	//Add console
 	drawConsoleWindow(buffer);
-	//Finalise ImGUI rendering
-	draw();
 }
 void GUIMgr::shutDown()//cleanup ImG
 {
@@ -206,4 +204,45 @@ void GUIMgr::shutDown()//cleanup ImG
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
+}
+
+void GUIMgr::drawOpenGLWindow(Camera camera[], Camera_settings* camera_settings, rect* GLWINDOW_POS)
+{
+	//Rendering window displays our FBO
+	ImGui::Begin("OpenGLWindow");
+
+	ImVec2 winPos = ImGui::GetCursorScreenPos();
+	ImVec2 winSize = ImGui::GetWindowSize();
+
+	if (winPos.x != GLWINDOW_POS->posx || GLWINDOW_POS->posy != winPos.y || GLWINDOW_POS->width != winSize.x || GLWINDOW_POS->height != winSize.y)
+	{
+		camera[0].updateScreenSize(winSize.x, winSize.y);
+		camera[1].updateScreenSize(winSize.x, winSize.y);
+		camera[2].updateScreenSize(winSize.x, winSize.y);
+		camera[3].updateScreenSize(winSize.x, winSize.y);
+		camera_settings->screenWidth = winSize.x;
+		camera_settings->screenHeight = winSize.y;
+
+		//Update camera screensize
+		//Update Viewport sizes
+		//Update GLWINDOW_POS
+		*GLWINDOW_POS = { winPos.x , winPos.y ,winSize.x ,winSize.y };
+		//Create a new FBO
+		fbo = new FBO(winSize.x, winSize.y);
+	}
+
+	winSize.x += winPos.x;
+	winSize.y += winPos.y;
+
+	//ImGui::Button("Resizing", ImVec2(GLWINDOW_POS->width, GLWINDOW_POS->height));
+	/*if (ImGui::IsItemHovered())
+		OGL_WIN_SELECT = true;
+	else
+		OGL_WIN_SELECT = false;*/
+
+	ImGui::GetWindowDrawList()->AddImage(
+		(void*)fbo->getTexture(),
+		winPos, winSize,
+		ImVec2(0, 1), ImVec2(1, 0));
+	ImGui::End();
 }

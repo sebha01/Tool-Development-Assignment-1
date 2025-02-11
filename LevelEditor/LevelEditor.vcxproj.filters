@@ -87,6 +87,9 @@
     <ClCompile Include="GroundQuad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Resources\Libs\CoreStructures\FBO.cpp">
+      <Filter>Resource Files\CoreStructures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Resources\Libs\IMGUI\imconfig.h">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="NavSet.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Resources\Libs\CoreStructures\FBO.h">
+      <Filter>Resource Files\CoreStructures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

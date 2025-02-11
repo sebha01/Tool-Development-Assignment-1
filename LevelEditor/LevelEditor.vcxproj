@@ -144,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Resources\Libs\CoreStructures\FBO.cpp" />
     <ClCompile Include="..\..\Resources\Libs\CoreStructures\Mesh.cpp" />
     <ClCompile Include="..\..\Resources\Libs\CoreStructures\ShaderLoader.cpp" />
     <ClCompile Include="..\..\Resources\Libs\CoreStructures\TextureLoader.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Resources\Libs\CoreStructures\FBO.h" />
     <ClInclude Include="..\..\Resources\Libs\CoreStructures\Mesh.h" />
     <ClInclude Include="..\..\Resources\Libs\CoreStructures\ShaderLoader.h" />
     <ClInclude Include="..\..\Resources\Libs\CoreStructures\TextureLoader.h" />

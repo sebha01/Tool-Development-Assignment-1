@@ -13,6 +13,7 @@
 #include "Scene.h"
 #include "Camera.h"
 //#include "GroundQuad.h"
+rect GLWINDOW_POS = { 0,0,1024,1024 };
 
 using namespace std;
 
@@ -35,7 +36,7 @@ Camera camera[] =
 };
 
 GUIMgr GUI;
-InputMgr inputMgr = InputMgr(&GUI, &camera_settings, camera);
+InputMgr inputMgr = InputMgr(&GLWINDOW_POS, &GUI, &camera_settings, camera);
 
 //GroundQuad ground;
 
@@ -127,6 +128,15 @@ int main()
 		inputMgr.processInput(window);
 
 		// Clear the screen
+		glClearColor(0.1f, 0.1f, 1.1f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		// Don't render anything if the FBO was not created successfully
+		if (!GUI.getFBO()->getFBOOK())
+			return -1;
+		// Bind framebuffer object so all rendering redirected to attached images
+		glBindFramebuffer(GL_FRAMEBUFFER, GUI.getFBO()->getFBO());
+
+		//// Clear the screen
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glViewport(0, 0, camera_settings.screenWidth, camera_settings.screenHeight);//viewport fills window
@@ -143,10 +153,18 @@ int main()
 		glDisable(GL_STENCIL_TEST);
 
 	//	ground.drawQuad_VBO(I, viewProjectionMatrix);
-	// 		
+
+		//Set OpenGL to render to the MAIN framebuffer (ie. the screen itself!!)
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
 		//Draw all GUI components with one function call
 		GUI.drawAll(&buffer);
 
+		//Rendering window displays our FBO
+		GUI.drawOpenGLWindow(camera, &camera_settings, &GLWINDOW_POS);
+
+		//Finalise ImGUI rendering
+		GUI.draw();
 
 		// glfw: swap buffers and poll events
 		glfwSwapBuffers(window);

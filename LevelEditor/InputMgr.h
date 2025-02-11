@@ -11,6 +11,10 @@ using namespace std;
 class InputMgr
 {
 public:
+	//windows
+	bool OGL_WIN_SELECT = false;
+	rect* GLWINDOW_POS;
+
 	Camera_settings *camera_settings;
 	float lastX = -1;
 	float lastY = -1;
@@ -23,11 +27,11 @@ public:
 	GUIMgr* gui;
 	Camera* camera;
 
-	InputMgr(GUIMgr* _gui, Camera_settings* _camera_settings, Camera* _camera, Camera_Type _currentCam= Camera_Type::FRONT) {
+	InputMgr(rect* _GLWINDOW_POS, GUIMgr* _gui, Camera_settings* _camera_settings, Camera* _camera, Camera_Type _currentCam= Camera_Type::FRONT) {
 		gui=_gui;
 		camera_settings = _camera_settings; camera = _camera;
 		currentCam = _currentCam;
-
+		GLWINDOW_POS = _GLWINDOW_POS;
 	};
 	void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 	void mouse_callback(GLFWwindow* window, double xpos, double ypos);

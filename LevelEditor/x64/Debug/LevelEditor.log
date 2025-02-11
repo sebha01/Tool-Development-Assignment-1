@@ -1,2 +1,7 @@
-﻿  LevelEditor.cpp
+﻿  GUIMgr.cpp
+C:\Users\sebas\OneDrive - University of South Wales\Uni\Tool Development\Tool-Development-Assignment-1\LevelEditor\GUIMgr.cpp(223,41): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\sebas\OneDrive - University of South Wales\Uni\Tool Development\Tool-Development-Assignment-1\LevelEditor\GUIMgr.cpp(224,42): warning C4244: '=': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\sebas\OneDrive - University of South Wales\Uni\Tool Development\Tool-Development-Assignment-1\LevelEditor\GUIMgr.cpp(231,35): warning C4244: 'argument': conversion from 'float' to 'GLuint', possible loss of data
+C:\Users\sebas\OneDrive - University of South Wales\Uni\Tool Development\Tool-Development-Assignment-1\LevelEditor\GUIMgr.cpp(231,24): warning C4244: 'argument': conversion from 'float' to 'GLuint', possible loss of data
+C:\Users\sebas\OneDrive - University of South Wales\Uni\Tool Development\Tool-Development-Assignment-1\LevelEditor\GUIMgr.cpp(244,3): warning C4312: 'type cast': conversion from 'GLuint' to 'void *' of greater size
   LevelEditor.vcxproj -> C:\Users\sebas\OneDrive - University of South Wales\Uni\Tool Development\Tool-Development-Assignment-1\x64\Debug\LevelEditor.exe
