@@ -1,21 +1,30 @@
 #include "GUIMgr.h"
 
-void GUIMgr::DrawModel(Model* node) {
+void GUIMgr::DrawModel(Model* node) 
+{
 	static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 
-	if (node->children.empty()) {
+	if (node->children.empty()) 
+	{
 		bool isSelected = scene.selected_model == node ? true : false;
+	
 		if (ImGui::Selectable(node->name.c_str(), isSelected))
+		{
 			scene.selected_model = node;
 			scene.selected_NavPoint = nullptr;
+		}
 	}
 	else {
 		ImGui::SetNextItemOpen(node->open);
 		ImGuiTreeNodeFlags node_flags = base_flags;
 
 		if (node == scene.selected_model)
+		{
 			node_flags |= ImGuiTreeNodeFlags_Selected;
+		}
+
 		bool open = ImGui::TreeNodeEx(node->name.c_str(), node_flags);
+
 		if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen())
 		{
 			scene.selected_model = node;
@@ -33,7 +42,9 @@ void GUIMgr::DrawModel(Model* node) {
 			ImGui::TreePop();
 		}
 		else
+		{
 			node->open = false;
+		}
 	}
 }
 
@@ -45,7 +56,6 @@ void GUIMgr::drawConsoleWindow(std::stringstream* buffer)
 	ImGui::Text(console_text.c_str());
 	ImGui::SetScrollHereY(1.0f);
 	ImGui::End();
-
 }
 
 void GUIMgr::init(GLFWwindow* window)
@@ -56,8 +66,6 @@ void GUIMgr::init(GLFWwindow* window)
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
-	//ImGuiIO& io = ImGui::GetIO(); (void)io;
-	//io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 	ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 	fbo = new FBO(1024, 1024);
 }
@@ -69,6 +77,7 @@ void GUIMgr::createFrame()
 	ImGui::NewFrame();
 
 }
+
 void GUIMgr::drawMenu()
 {
 	//Create main dockspace
@@ -154,16 +163,18 @@ void GUIMgr::drawMenu()
 		ImGui::End();
 	}
 }
+
 void GUIMgr::drawPropertiesWindow(Model* model)
 {
 	ImGui::Begin("Level Tree");
 	DrawModel(&scene.rootModel);
 	DrawNavSet();
 	ImGui::End();
+
 	//9.Add a properties window here
 	ImGui::Begin("Properties");
 	{
-		if (scene.selected_model != nullptr && scene.selected_NavPoint == nullptr)
+		if (scene.selected_model != nullptr)
 		{
 			//11.Add text input here
 			ImGui::Text(scene.selected_model->name.c_str());
@@ -191,17 +202,18 @@ void GUIMgr::drawPropertiesWindow(Model* model)
 	ImGui::End();
 
 }
+
 void GUIMgr::draw()//Finalise ImGUI rendering
 {
 	//Finalise ImGUI rendering
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
+
 void GUIMgr::drawAll(std::stringstream* buffer)
 {
 	//Create a new imGUI frame
 	createFrame();
-
 
 	////Show the ImGUI Demo
 	//bool show = true;
@@ -214,6 +226,7 @@ void GUIMgr::drawAll(std::stringstream* buffer)
 	//Add console
 	drawConsoleWindow(buffer);
 }
+
 void GUIMgr::shutDown()//cleanup ImG
 {
 	//Cleanup ImGUI. After the render loop but before “glfwTerminate(); ” 
@@ -250,16 +263,7 @@ void GUIMgr::drawOpenGLWindow(Camera camera[], Camera_settings* camera_settings,
 	winSize.x += winPos.x;
 	winSize.y += winPos.y;
 
-	//ImGui::Button("Resizing", ImVec2(GLWINDOW_POS->width, GLWINDOW_POS->height));
-	/*if (ImGui::IsItemHovered())
-		OGL_WIN_SELECT = true;
-	else
-		OGL_WIN_SELECT = false;*/
-
-	ImGui::GetWindowDrawList()->AddImage(
-		(void*)fbo->getTexture(),
-		winPos, winSize,
-		ImVec2(0, 1), ImVec2(1, 0));
+	ImGui::GetWindowDrawList()->AddImage((void*)fbo->getTexture(), winPos, winSize, ImVec2(0, 1), ImVec2(1, 0));
 	ImGui::End();
 }
 
