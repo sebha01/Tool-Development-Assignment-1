@@ -67,8 +67,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-01-29T13:23:04.497Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -80,8 +79,7 @@
               "RelativeToolTip": "LevelEditor\\Scene.cpp",
               "ViewState": "AgIAAG4AAAAAAAAAAAAqwDQAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-29T13:23:05.721Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T13:23:05.721Z"
             },
             {
               "$type": "Document",
@@ -93,8 +91,7 @@
               "RelativeToolTip": "LevelEditor\\InputMgr.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-29T13:25:23.245Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T13:25:23.245Z"
             },
             {
               "$type": "Document",
@@ -119,8 +116,7 @@
               "RelativeToolTip": "LevelEditor\\GUIMgr.cpp",
               "ViewState": "AgIAAIgAAAAAAAAAAAAAAC0BAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-29T13:24:56.661Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T13:24:56.661Z"
             },
             {
               "$type": "Document",
@@ -132,8 +128,7 @@
               "RelativeToolTip": "LevelEditor\\NavSet.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-29T13:14:40.723Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T13:14:40.723Z"
             },
             {
               "$type": "Document",
@@ -145,8 +140,7 @@
               "RelativeToolTip": "LevelEditor\\Model.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHoAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-04T12:51:41.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T12:51:41.317Z"
             },
             {
               "$type": "Document",
@@ -158,8 +152,7 @@
               "RelativeToolTip": "LevelEditor\\NavPoint.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-29T13:12:17.687Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T13:12:17.687Z"
             },
             {
               "$type": "Document",
