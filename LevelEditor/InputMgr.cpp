@@ -78,7 +78,7 @@ void InputMgr::mouse_button_callback(GLFWwindow* window, int button, int action,
 			if (!gui->scene.selectModelByID(&gui->scene.rootModel, (int)stencil))
 				cout << "Model ID " << (int)stencil << " not found" << endl;
 		}
-		else if (stencil > 127) {
+		else if (stencil > 255) {
 			if (!gui->scene.selectNodeByID((int)stencil))
 				cout << "Node ID " << (int)stencil << " not found" << endl;
 		}
