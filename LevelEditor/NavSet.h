@@ -14,6 +14,7 @@ class NavSet
 public:
 	vector<NavPoint> navPoints;
 	Model* navModel = nullptr;
+    bool open = false;
 
 	void init() //Loads a Sphere.obj model
 	{

@@ -43,5 +43,6 @@ public:
 	void DrawModel(Model* node);
 	void drawOpenGLWindow(Camera camera[], Camera_settings* camera_settings, rect* GLWINDOW_POS);
 	FBO* getFBO() { return fbo; };
+	void DrawNavSet();
 };
 
